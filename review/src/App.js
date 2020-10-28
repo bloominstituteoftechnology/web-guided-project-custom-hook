@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
+import pokemonServices from './services/pokemonServices';
+
 import PokeList from './components/PokeList';
 import SelectedPoke from './components/SelectedPoke';
 import data from "./../data";
@@ -10,15 +12,13 @@ function App() {
   const [selectedPokemon, setSelectedPokemon] = useState({});
 
   useEffect(() => {
-    setPokemen(data);
+    setPokemen(pokemonServices.fetchAllPoke());
   }, []);
 
   const handlePoke = (id) => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-      .then((res) => res.json())
-      .then((data) => {
+    pokemonServices.fetchSelectedPoke(id).then((data) => {
         setSelectedPokemon(data);
-      });
+    });
   };
 
   return (
