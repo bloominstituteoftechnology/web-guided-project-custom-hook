@@ -15,7 +15,7 @@ function SelectedPoke(props) {
           <h5>Abilities:</h5>
           <ul>
             {selectedPokemon.abilities.map((a) => (
-              <li>
+              <li key={a.ability.name}>
                 {a.ability.name} - Slot {a.slot}{" "}
               </li>
             ))}

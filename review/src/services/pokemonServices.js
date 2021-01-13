@@ -1,6 +1,6 @@
 import data from "./../../data";
 
-const fetchSelectedPoke = (id) => {
+export const fetchSelectedPoke = (id) => {
   return fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
     .then((res) => res.json())
     .then((data) => {
@@ -8,11 +8,6 @@ const fetchSelectedPoke = (id) => {
     });
 };
 
-const fetchAllPoke = () => {
+export const fetchAllPoke = () => {
   return data;
-};
-
-export default {
-  fetchSelectedPoke,
-  fetchAllPoke
 };

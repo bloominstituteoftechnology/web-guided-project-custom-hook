@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import pokemonServices from "./../services/pokemonServices";
+import {fetchAllPoke, fetchSelectedPoke} from "./../services/pokemonServices";
 
 function usePokeState() {
   const [pokemen, setPokemen] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState({});
 
   useEffect(() => {
-    setPokemen(pokemonServices.fetchAllPoke());
+    setPokemen(fetchAllPoke());
   }, []);
 
   const handlePoke = (id) => {
-    pokemonServices.fetchSelectedPoke(id).then((data) => {
+    fetchSelectedPoke(id).then((data) => {
       setSelectedPokemon(data);
     });
   };
