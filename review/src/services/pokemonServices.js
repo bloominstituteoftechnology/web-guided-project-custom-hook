@@ -1,11 +1,11 @@
 import data from "./../../data";
+import axios from 'axios';
 
 export const fetchSelectedPoke = (id) => {
-  return fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    .then((res) => res.json())
-    .then((data) => {
-      return data;
-    });
+  return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+    .then((res) => {
+      return(res.data);
+  });
 };
 
 export const fetchAllPoke = () => {
