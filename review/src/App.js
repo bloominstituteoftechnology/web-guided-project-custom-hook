@@ -5,7 +5,6 @@ import pokemonServices from './services/pokemonServices';
 
 import PokeList from './components/PokeList';
 import SelectedPoke from './components/SelectedPoke';
-import data from "./../data";
 
 function App() {
   const [pokemen, setPokemen] = useState([]);
@@ -16,7 +15,8 @@ function App() {
   }, []);
 
   const handlePoke = (id) => {
-    pokemonServices.fetchSelectedPoke(id).then((data) => {
+    pokemonServices.fetchSelectedPoke(id)
+      .then((data) => {
         setSelectedPokemon(data);
     });
   };
