@@ -48,6 +48,7 @@ export default function SignupForm() {
             id="outlined-name"
             label="First Name"
             className={classes.textField}
+            name="firstName"
             value={firstName}
             onChange={handleChanges}
             margin="normal"
