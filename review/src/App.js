@@ -9,19 +9,25 @@ import data from "./../data";
 import axios from 'axios';
 
 function App() {
-  const [pokemen, setPokemen] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState({});
+  const usePokeState = (initPokemen, initSelectedPokemon) => {
+    const [pokemen, setPokemen] = useState(initPokemen);
+    const [selectedPokemon, setSelectedPokemon] = useState(initSelectedPokemon);
+  
+    useEffect(() => {
+      setPokemen(getPokemen());
+    }, []);
+  
+    const handlePoke = (id) => {
+     getSelectedPokemon(id)
+        .then((data) => {
+          setSelectedPokemon(data);
+        });
+    };  
 
-  useEffect(() => {
-    setPokemen(getPokemen());
-  }, []);
+    return([selectedPokemon, handlePoke, pokemen])
+  }
 
-  const handlePoke = (id) => {
-   getSelectedPokemon(id)
-      .then((data) => {
-        setSelectedPokemon(data);
-      });
-  };
+  const [selectedPokemon, handlePoke, pokemen] = usePokeState([], {});
 
   return (
     <div className="App">
