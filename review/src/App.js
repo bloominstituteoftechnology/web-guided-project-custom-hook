@@ -7,7 +7,6 @@ import PokeList from './components/PokeList';
 import SelectedPoke from './components/SelectedPoke';
 
 function App() {
-
   const [selectedPokemon, handlePoke, pokemen] = usePokeState([], {});
 
   return (
