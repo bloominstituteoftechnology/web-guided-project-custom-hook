@@ -21,24 +21,41 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const initialValues = {
+  firstName: "",
+  lastName: "",
+  email: ""
+}
+
 export default function SignupForm() {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState("");
 
-  const handleChanges = e => {
-    setFirstName(e.target.value);
-  };
+  const useForm = (initialValues) => {
+    const [values, setValues] = useState(initialValues);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    alert(firstName);
-  };
+    const handleChanges = e => {
+      console.log(e.target.name, "e.target.name")
+      setValues({
+        ...values,
+        [e.target.name] : e.target.value
+       });
+    };
+  
+    const clearForm = e => {
+      e.preventDefault();
+      setValues(initialValues);
+    };
 
-  const clearForm = e => {
-    e.preventDefault();
-    setFirstName("");
-  };
+    const handleSubmit = e => {
+      e.preventDefault();
+      alert(values.firstName + " " + values.lastName + " " + values.email);
+    };
 
+    return([values, handleChanges, clearForm, handleSubmit]);
+  }
+
+  const [values, handleChanges, clearForm, handleSubmit] = useForm(initialValues);
+  
   return (
     <div p={2} className="form">
       <form onSubmit={handleSubmit}>
@@ -49,7 +66,27 @@ export default function SignupForm() {
             label="First Name"
             className={classes.textField}
             name="firstName"
-            value={firstName}
+            value={values.firstName}
+            onChange={handleChanges}
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-name"
+            label="Last Name"
+            className={classes.textField}
+            name="lastName"
+            value={values.lastName}
+            onChange={handleChanges}
+            margin="normal"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-name"
+            label="email"
+            className={classes.textField}
+            name="email"
+            value={values.email}
             onChange={handleChanges}
             margin="normal"
             variant="outlined"
