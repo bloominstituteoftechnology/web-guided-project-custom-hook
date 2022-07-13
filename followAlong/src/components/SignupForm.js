@@ -34,7 +34,7 @@ export default function SignupForm() {
     const [values, setValues] = useState(initialValues);
 
     const handleChanges = e => {
-      console.log(e.target.name, "e.target.name")
+      console.log(e.target.name, "e.target.name") //=> firstName, lastName, email
       setValues({
         ...values,
         [e.target.name] : e.target.value
